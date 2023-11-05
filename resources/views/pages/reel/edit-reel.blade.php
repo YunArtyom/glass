@@ -38,8 +38,8 @@
                                         <textarea class="form-control" id="content" name="content" placeholder="Введите описание reel">{{$reel->content}}</textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="video">Видео.</label>
-                                        <textarea class="form-control" id="video" name="video" placeholder="Введите видео reel"></textarea>
+                                        <label for="video">Iframe вставка - ссыслка на YouTube.</label>
+                                        <textarea class="form-control" id="video" name="video" placeholder="Вставьте <iframe>">{{$reel->video}}</textarea>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

@@ -69,6 +69,6 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::get('info-reel-page', [ReelController::class, 'infoPage'])->name('infoReelPage');
     });
 
-    Route::get('delete-comment', [CommentController::class, 'deleteComment'])->name('deleteComment');
+//  Route::get('delete-comment', [CommentController::class, 'deleteComment'])->name('deleteComment');
 });
 

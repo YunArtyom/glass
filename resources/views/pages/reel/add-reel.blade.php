@@ -35,8 +35,8 @@
                                         <textarea class="form-control" id="content" name="content" placeholder="Введите описание reel"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="video">Видео или ссыслка на YouTube.</label>
-                                        <textarea class="form-control" id="video" name="video" placeholder="Введите видео reel"></textarea>
+                                        <label for="video">Iframe вставка - ссыслка на YouTube.</label>
+                                        <textarea class="form-control" id="video" name="video" placeholder="Вставьте <iframe>"></textarea>
                                     </div>
                                 </div>
 

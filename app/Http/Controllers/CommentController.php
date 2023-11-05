@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
 
-    public function deleteComment(Request $request): RedirectResponse
-    {
-        Comment::find($request->id)->delete();
-        return redirect()->back();
-    }
+//    public function deleteComment(Request $request): RedirectResponse
+//    {
+//        Comment::find($request->id)->delete();
+//        return redirect()->back();
+//    }
 }

@@ -18,7 +18,6 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-sm-6">
-                            <h3 class="d-inline-block d-sm-none">{{ $product->name }}</h3>
                             <div class="col-12">
                                 <img src="../../dist/img/prod-1.jpg" class="product-image" alt="Product Image">
                             </div>
@@ -51,7 +50,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row mt-4">
+                    <!-- <div class="row mt-4">
                         <nav class="w-100">
                             <div class="nav nav-tabs" id="product-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">Комментарии</a>
@@ -85,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
