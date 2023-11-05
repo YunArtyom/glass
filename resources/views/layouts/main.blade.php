@@ -46,12 +46,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="https://time.is/ru/" role="button" target="_blank">
-                      @php $date = \Carbon\Carbon::today()->format('d-m-Y');
-                           $year = \Carbon\Carbon::today()->format('Y') //Год в футере
-                      @endphp
-                Дата: {{$date}}
-                </a>
+                <a href="{{ route('logout') }}" class="nav-link">Выйти из профиля</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -139,6 +134,9 @@
     @yield('content')
 
     <footer class="main-footer">
+        @php $date = \Carbon\Carbon::today()->format('d-m-Y');
+                           $year = \Carbon\Carbon::today()->format('Y') //Год в футере
+        @endphp
         <strong>Copyright &copy; 2014-{{$year}}<a href="https://adminlte.io">AdminLTE.io</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
