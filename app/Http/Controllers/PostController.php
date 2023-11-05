@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostFormRequest;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 
@@ -20,10 +21,10 @@ class PostController extends Controller
         return view('pages/post/add-post');
     }
 
-    public function addPost(PostFormRequest $request): View
+    public function addPost(PostFormRequest $request): RedirectResponse
     {
         Post::create($request->validated());
-        return view('pages/post/index')->with(['posts' => Post::all()->sortDesc()]);
+        return redirect()->route('postsIndexPage')->with(['posts' => Post::all()->sortDesc()]);
     }
 
     public function editPostPage(Request $request): View
@@ -33,16 +34,16 @@ class PostController extends Controller
             ->with(['post' => $post]);
     }
 
-    public function editPost(PostFormRequest $request): View
+    public function editPost(PostFormRequest $request): RedirectResponse
     {
         Post::query()->where('id', '=', $request->id)->update($request->validated());
-        return view('pages/post/index')->with(['posts' => Post::all()->sortDesc()]);
+        return redirect()->route('postsIndexPage')->with(['posts' => Post::all()->sortDesc()]);
     }
 
-    public function deletePost(Request $request): View
+    public function deletePost(Request $request): RedirectResponse
     {
         Post::find($request->id)->delete();
-        return view('pages/post/index')->with(['posts' => Post::all()->sortDesc()]);
+        return redirect()->route('postsIndexPage')->with(['posts' => Post::all()->sortDesc()]);
     }
 
     public function infoPage(Request $request): View

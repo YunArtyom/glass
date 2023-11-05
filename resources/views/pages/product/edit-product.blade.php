@@ -49,10 +49,11 @@
                                         <label for="seo_content">Описание CEO.</label>
                                         <textarea class="form-control" id="seo_content" name="seo_content" placeholder="Введите описание продукта CEO">{{$product->seo_content}}</textarea>
                                     </div>
+                                    <input type="text" value="{{$oldCategory->id}}" name="category_id" style="display: none">
                                     <div class="form-group">
                                         <label for="exampleSelectRounded0">Категория продукта.</label>
-                                        <select class="custom-select rounded-0" id="category_id">
-                                            <option value="{{ $category->id }}" selected disabled hidden> {{ $category->title }}</option>
+                                        <select class="custom-select rounded-0" id="category_id" name="category_id">
+                                            <option value="{{ $oldCategory->id }}" selected disabled> {{ $oldCategory->title }}</option>
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->title }} </option>
                                             @endforeach

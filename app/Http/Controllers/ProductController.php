@@ -7,6 +7,7 @@ use App\Http\Requests\ProductFormRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 
@@ -27,10 +28,10 @@ class ProductController extends Controller
         return view('pages/product/add-product')->with(['categories' => Category::all()]);
     }
 
-    public function addProduct(ProductFormRequest $request): View
+    public function addProduct(ProductFormRequest $request): RedirectResponse
     {
         Product::create($request->validated());
-        return view('pages/product/products')->with(['products' => Product::all()]);
+        return redirect()->route('allProductsPage')->with(['products' => Product::all()]);
     }
 
     public function editProductPage(Request $request): View
@@ -38,20 +39,20 @@ class ProductController extends Controller
         $product = Product::find($request->id);
         return view('pages/product/edit-product')
             ->with(['product' => $product])
-            ->with(['category' => $product->category])
-            ->with(['categories' => Category::all()]);
+            ->with(['oldCategory' => $product->category])
+            ->with(['categories' => Category::where('title', '!=', $product->category->title)->get()]);
     }
 
-    public function editProduct(ProductFormRequest $request): View
+    public function editProduct(ProductFormRequest $request): RedirectResponse
     {
         Product::query()->where('id', '=', $request->id)->update($request->validated());
-        return view('pages/product/products')->with(['products' => Product::all()]);
+        return redirect()->route('allProductsPage')->with(['products' => Product::all()]);
     }
 
-    public function deleteProduct(Request $request): View
+    public function deleteProduct(Request $request): RedirectResponse
     {
         Product::find($request->id)->delete();
-        return view('pages/product/products')->with(['products' => Product::all()]);
+        return redirect()->route('allProductsPage')->with(['products' => Product::all()]);
     }
 
     public function infoPage(Request $request): View
@@ -69,10 +70,10 @@ class ProductController extends Controller
         return view('pages/product/add-category');
     }
 
-    public function addCategory(CategoryFormRequest $request): View
+    public function addCategory(CategoryFormRequest $request): RedirectResponse
     {
         Category::create($request->validated());
-        return view('pages/product/categories')->with(['categories' => Category::all()]);
+        return redirect()->route('allCategoriesPage')->with(['categories' => Category::all()]);
     }
 
     public function editCategoryPage(Request $request): View
@@ -80,15 +81,15 @@ class ProductController extends Controller
         return view('pages/product/edit-category')->with(['category' => Category::find($request->id)]);
     }
 
-    public function editCategory(CategoryFormRequest $request): View
+    public function editCategory(CategoryFormRequest $request): RedirectResponse
     {
         Category::query()->where('id', '=', $request->id)->update($request->validated());
-        return view('pages/product/categories')->with(['categories' => Category::all()]);
+        return redirect()->route('allCategoriesPage')->with(['categories' => Category::all()]);
     }
 
-    public function deleteCategory(Request $request): View
+    public function deleteCategory(Request $request): RedirectResponse
     {
         Category::find($request->id)->delete();
-        return view('pages/product/categories')->with(['categories' => Category::all()]);
+        return redirect()->route('allCategoriesPage')->with(['categories' => Category::all()]);
     }
 }

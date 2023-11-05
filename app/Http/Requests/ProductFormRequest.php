@@ -16,7 +16,7 @@ class ProductFormRequest extends FormRequest
             'desc' => 'required|string',
             'seo_name' => 'string|nullable',
             'seo_content' => 'string|nullable',
-            'category_id' => 'required|string',
+            'category_id' => 'required',
             'img' => 'required|string'
         ];
     }

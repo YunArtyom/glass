@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReelFormRequest;
 use App\Models\Reel;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 
@@ -20,10 +21,10 @@ class ReelController extends Controller
         return view('pages/reel/add-reel');
     }
 
-    public function addReel(ReelFormRequest $request): View
+    public function addReel(ReelFormRequest $request): RedirectResponse
     {
         Reel::create($request->validated());
-        return view('pages/reel/index')->with(['reels' => Reel::all()->sortDesc()]);
+        return redirect()->route('reelsIndexPage')->with(['reels' => Reel::all()->sortDesc()]);
     }
 
     public function editReelPage(Request $request): View
@@ -33,16 +34,16 @@ class ReelController extends Controller
             ->with(['reel' => $post]);
     }
 
-    public function editReel(ReelFormRequest $request): View
+    public function editReel(ReelFormRequest $request): RedirectResponse
     {
         Reel::query()->where('id', '=', $request->id)->update($request->validated());
-        return view('pages/reel/index')->with(['reels' => Reel::all()->sortDesc()]);
+        return redirect()->route('reelsIndexPage')->with(['reels' => Reel::all()->sortDesc()]);
     }
 
-    public function deleteReel(Request $request): View
+    public function deleteReel(Request $request): RedirectResponse
     {
         Reel::find($request->id)->delete();
-        return view('pages/reel/index')->with(['reels' => Reel::all()->sortDesc()]);
+        return redirect()->route('reelsIndexPage')->with(['reels' => Reel::all()->sortDesc()]);
     }
 
     public function infoPage(Request $request): View

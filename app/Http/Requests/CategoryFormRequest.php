@@ -11,7 +11,7 @@ class CategoryFormRequest extends FormRequest
     {
         return [
             'id' => 'string',
-            'title' => 'required|string'
+            'title' => 'required|string|unique:categories,title'
         ];
     }
 }

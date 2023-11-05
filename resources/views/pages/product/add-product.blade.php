@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleSelectRounded0">Категория продукта.</label>
-                                        <select class="custom-select rounded-0" id="category_id">
+                                        <select class="custom-select rounded-0" id="category_id" name="category_id">
                                             <option value="" selected disabled hidden>Не выбрано</option>
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->title }} </option>
