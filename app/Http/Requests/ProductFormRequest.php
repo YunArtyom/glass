@@ -17,7 +17,7 @@ class ProductFormRequest extends FormRequest
             'seo_name' => 'string|nullable',
             'seo_content' => 'string|nullable',
             'category_id' => 'required',
-            'img' => 'required|string'
+            'img' => 'required'
         ];
     }
 }

@@ -23,7 +23,20 @@ class PostController extends Controller
 
     public function addPost(PostFormRequest $request): RedirectResponse
     {
-        Post::create($request->validated());
+        $post = new Post;
+        $images = [];
+        foreach (collect($request->validated()['images'])->unique() as $key => $image) {
+            $filename = $key . rand(1, 900) . time() .'.'. $image->getClientOriginalExtension();
+            $image->move(public_path('storage/media/'), $filename);
+
+            $images[] = $filename;
+        }
+        $post->name = $request->validated()['name'];
+        $post->content = $request->validated()['content'];
+        $post->seo_name = $request->validated()['seo_name'];
+        $post->seo_content = $request->validated()['seo_content'];
+        $post->images = json_encode($images);
+        $post->save();
         return redirect()->route('postsIndexPage')->with(['posts' => Post::all()->sortDesc()]);
     }
 

@@ -15,7 +15,7 @@ class PostFormRequest extends FormRequest
             'content' => 'required|string',
             'seo_name' => 'string|nullable',
             'seo_content' => 'string|nullable',
-            'images' => 'required|string'
+            'images' => 'required'
         ];
     }
 }

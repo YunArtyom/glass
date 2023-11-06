@@ -25,9 +25,9 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('editPost') }}" method="POST" >
+                            <form action="{{ route('editPost') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="card-body">
+                                <div class="card-body form-blocks">
                                     <input type="text" value="{{$post->id}}" name="id" style="display: none">
                                     <div class="form-group">
                                         <label for="name">Название продукта.</label>
@@ -45,9 +45,17 @@
                                         <label for="seo_content">Описание CEO.</label>
                                         <textarea class="form-control" id="seo_content" name="seo_content" placeholder="Введите описание поста CEO">{{$post->seo_content}}</textarea>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="images">Фотографии.</label>
-                                        <textarea class="form-control" id="images" name="images" placeholder="Введите фото поста"></textarea>
+                                    <div class="form-group image">
+                                        <label for="images">Фото.</label>
+                                        <div class="input-group input-image">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="images" name="images[]">
+                                                <label class="custom-file-label" for="images[]">Выберите фотографию</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <button class="input-group-text" type="button" onclick="newInput()">Добавить еще одно фото</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
@@ -76,3 +84,12 @@
         <!-- /.content -->
     </div>
 @endsection
+
+<script type="text/javascript">
+    function newInput() {
+        let count = 1;
+        let elem = document.querySelector('.image');
+        let clone = elem.cloneNode(true);
+        document.querySelector('.form-blocks').appendChild(clone);
+    }
+</script>
