@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryFormRequest;
-use App\Http\Requests\ProductFormRequest;
+use App\Http\Requests\AddProductFormRequest;
+use App\Http\Requests\EditProductFormRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
@@ -28,9 +29,21 @@ class ProductController extends Controller
         return view('pages/product/add-product')->with(['categories' => Category::all()]);
     }
 
-    public function addProduct(ProductFormRequest $request): RedirectResponse
+    public function addProduct(AddProductFormRequest $request): RedirectResponse
     {
-        Product::create($request->validated());
+        $product = new Product;
+        $image = $request->validated()['img'];
+        $imageName = rand(1, 900) . time() .'.'. $image->getClientOriginalExtension();
+        $image->move(public_path('storage/media/'), $imageName);
+
+        $product->name = $request->validated()['name'];
+        $product->price = $request->validated()['price'];
+        $product->desc = $request->validated()['desc'];
+        $product->seo_name = $request->validated()['seo_name'];
+        $product->seo_content = $request->validated()['seo_content'];
+        $product->category_id = $request->validated()['category_id'];
+        $product->img = $imageName;
+        $product->save();
         return redirect()->route('allProductsPage')->with(['products' => Product::all()]);
     }
 
@@ -43,9 +56,26 @@ class ProductController extends Controller
             ->with(['categories' => Category::where('title', '!=', $product->category->title)->get()]);
     }
 
-    public function editProduct(ProductFormRequest $request): RedirectResponse
+    public function editProduct(EditProductFormRequest $request): RedirectResponse
     {
-        Product::query()->where('id', '=', $request->id)->update($request->validated());
+        $product = Product::query()->find($request->validated()['id']);
+        if (isset($request->validated()['img'])) {
+            $img = $request->validated()['img'];
+            $imageName = rand(1, 900) . time() .'.'. $img->getClientOriginalExtension();
+            $img->move(public_path('storage/media/'), $imageName);
+        } else {
+            $imageName = $request->validated()['oldImg'];
+        }
+
+        $product->name = $request->validated()['name'];
+        $product->price = $request->validated()['price'];
+        $product->desc = $request->validated()['desc'];
+        $product->seo_name = $request->validated()['seo_name'];
+        $product->seo_content = $request->validated()['seo_content'];
+        $product->category_id = $request->validated()['category_id'];
+        $product->img = $imageName;
+        $product->save();
+
         return redirect()->route('allProductsPage')->with(['products' => Product::all()]);
     }
 

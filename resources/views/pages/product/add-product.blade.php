@@ -25,7 +25,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('addProduct') }}" method="POST" >
+                            <form action="{{ route('addProduct') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -58,8 +58,13 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="img">Фото.</label>
-                                        <textarea class="form-control" id="img" name="img" placeholder="Введите фото продукта"></textarea>
+                                        <label for="images">Фото.</label>
+                                        <div class="input-group input-image">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="img" name="img">
+                                                <label class="custom-file-label" for="img">Выберите фотографию</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

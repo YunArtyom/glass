@@ -19,7 +19,14 @@
                     <div class="row">
                         <div class="col-12 col-sm-6">
                             <div class="col-12">
-                                <img src="../../dist/img/prod-1.jpg" class="product-image" alt="Product Image">
+                                <img src="../storage/media/{{ json_decode($post->images, true)[0] }}" class="product-image" alt="Product Image">
+                            </div>
+                            <div class="col-12 product-image-thumbs">
+                                @foreach(json_decode($post->images, true) as $key => $image)
+                                    <div class="product-image-thumb thumb-{{$key}}" onclick="changeImage({{$key}})">
+                                        <img src="../storage/media/{{ $image }}" alt="Product Image">
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
@@ -84,3 +91,9 @@
         <!-- /.content -->
     </div>
 @endsection
+
+<script type="text/javascript">
+    function changeImage(key) {
+        document.querySelector('.product-image').src = document.querySelector('.thumb-' + key).querySelector('img').src;
+    }
+</script>

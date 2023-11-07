@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-12 col-sm-6">
                             <div class="col-12">
-                                <img src="../../dist/img/prod-1.jpg" class="product-image" alt="Product Image">
+                                <img src="../storage/media/{{ $product->img }}" class="product-image" alt="Product Image">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">

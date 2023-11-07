@@ -57,6 +57,7 @@ Route::middleware([Authenticate::class])->group(function () {
         Route::post('edit-post', [PostController::class, 'editPost'])->name('editPost');
         Route::get('delete-post', [PostController::class, 'deletePost'])->name('deletePost');
         Route::get('info-post-page', [PostController::class, 'infoPage'])->name('infoPostPage');
+        Route::get('delete-image', [PostController::class, 'deleteImage'])->name('deletePostImage');
     });
 
     Route::group(['prefix' => 'reels'], function () {

@@ -25,10 +25,13 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('editProduct') }}" method="POST" >
+                            <form action="{{ route('editProduct') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
+                                    <!-- DISPLAY NONE -->
                                     <input type="text" value="{{$product->id}}" name="id" style="display: none">
+                                    <input type="text" value="{{$product->img}}" name="oldImg" style="display: none">
+
                                     <div class="form-group">
                                         <label for="name">Название продукта.</label>
                                         <input type="text" class="form-control" value="{{$product->name}}" name="name" placeholder="Введите название продукта">
@@ -59,9 +62,14 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="img">Фото.</label>
-                                        <textarea class="form-control" id="img" name="img" placeholder="Введите фото продукта"></textarea>
+                                    <div class="form-group image">
+                                        <label for="images">Заменить фото.</label>
+                                        <div class="input-group input-image">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="img">
+                                                <label class="custom-file-label" for="img">Выберите фотографию</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
@@ -80,6 +88,22 @@
                                     <button type="submit" class="btn btn-success" name="action" value="get">Применить</button>
                                 </div>
                             </form>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Фотография продукта</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="photos">
+                                <br>
+                                <img src="../storage/media/{{ $product->img }}" style="width: 100%">
+                                <br>
+                            </div>
                         </div>
                         <!-- /.card -->
                     </div>

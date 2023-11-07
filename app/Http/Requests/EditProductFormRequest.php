@@ -5,17 +5,20 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 
-class PostFormRequest extends FormRequest
+class EditProductFormRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
             'id' => 'string',
             'name' => 'required|string',
-            'content' => 'required|string',
+            'price' => 'required|string',
+            'desc' => 'required|string',
             'seo_name' => 'string|nullable',
             'seo_content' => 'string|nullable',
-            'images' => 'required'
+            'category_id' => 'required',
+            'oldImg' => 'required_without:img',
+            'img' => 'required_without:oldImg'
         ];
     }
 }
