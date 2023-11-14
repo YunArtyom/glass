@@ -67,7 +67,7 @@
                                         <div class="input-group input-image">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name="img">
-                                                <label class="custom-file-label" for="img">Выберите фотографию</label>
+                                                <label class="custom-file-label" for="img">Выберите</label>
                                             </div>
                                         </div>
                                     </div>

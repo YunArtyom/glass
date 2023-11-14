@@ -28,8 +28,12 @@ Route::middleware([Authenticate::class])->group(function () {
 
     Route::group(['prefix' => 'promos'], function () {
         Route::get('main-page', [PromoController::class, 'promosPage'])->name('promosPage');
+        Route::get('add-promo-page', [PromoController::class, 'addPromoPage'])->name('addPromoPage');
+        Route::post('add-promo', [PromoController::class, 'addPromo'])->name('addPromo');
         Route::get('edit-page', [PromoController::class, 'editPromoPage'])->name('editPromoPage');
-        Route::get('edit', [PromoController::class, 'editPromo'])->name('editPromo');
+        Route::post('edit', [PromoController::class, 'editPromo'])->name('editPromo');
+        Route::get('info-promo-page', [PromoController::class, 'infoPromoPage'])->name('infoPromoPage');
+        Route::get('delete-promo', [PromoController::class, 'deletePromo'])->name('deletePromo');
     });
 
     Route::group(['prefix' => 'products'], function () {

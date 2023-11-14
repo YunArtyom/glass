@@ -53,7 +53,7 @@
                                         <div class="input-group input-image">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name="images[]">
-                                                <label class="custom-file-label" for="images[]">Выберите фотографию</label>
+                                                <label class="custom-file-label" for="images[]">Выберите</label>
                                             </div>
                                             <div class="input-group-append">
                                                 <button class="input-group-text" type="button" onclick="newInput()">Добавить еще одно фото</button>

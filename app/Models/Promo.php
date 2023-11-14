@@ -11,5 +11,6 @@ class Promo extends Model
         'name',
         'img',
         'content',
+        'end_date'
     ];
 }

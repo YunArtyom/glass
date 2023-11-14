@@ -17,6 +17,11 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Список промо-акций на сайте</h3>
+                    <div class="row justify-content-end">
+                        <div class="btn btn-success btn-sm text-right">
+                            <a href="{{ route('addPromoPage') }}" style="color: #FFFFFF">Добавить</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body p-0">
                     <table class="table table-striped projects">
@@ -25,23 +30,47 @@
                             <th style="width: 1%">
                                 Название
                             </th>
+                            <th style="width: 1%">
+                                Заканчивается
+                            </th>
                             <th style="width: 20%">
                             </th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($promos as $value)
+                        @foreach($promos as $promo)
                             <tr>
                                 <td>
-                                    {{ $value['name'] }}
+                                    {{ $promo['name'] }}
+                                </td>
+                                <td>
+                                    {{date('d-m-Y', strtotime($promo['end_date']))}}
                                 </td>
                                 <td class="project-actions text-right">
                                     <div class="btn">
+                                        <form action="{{ route('infoPromoPage') }}" method="GET">
+                                            @csrf
+                                            <input type="text" style="display: none" value="{{$promo['id']}}" name="id">
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="btn">
                                         <form action="{{ route('editPromoPage') }}" method="GET">
                                             @csrf
-                                            <input type="text" style="display: none" value="{{$value['id']}}" name="id">
+                                            <input type="text" style="display: none" value="{{$promo['id']}}" name="id">
                                             <button type="submit" class="btn btn-info btn-sm">
                                                 <i class="fas fa-pencil-alt"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="btn">
+                                        <form action="{{ route('deletePromo') }}" method="GET">
+                                            @csrf
+                                            <input type="text" style="display: none" value="{{$promo['id']}}" name="id">
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
                                     </div>
